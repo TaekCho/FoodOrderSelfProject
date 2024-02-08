@@ -1,8 +1,7 @@
+import Button from "./UI/Button";
 import logo from "../assets/logo.jpg";
 
 export default function Header({ itemsInCart }) {
-  const cartHasItems = itemsInCart > 0;
-
   return (
     <header id="main-header">
       <div id="title">
@@ -11,7 +10,7 @@ export default function Header({ itemsInCart }) {
       </div>
       <nav>
         {/* shows how many items are in the cart */}
-        <button>Cart ({cartHasItems ? itemsInCart : 0})</button>
+        <Button textOnly>Cart (0)</Button>
       </nav>
     </header>
   );

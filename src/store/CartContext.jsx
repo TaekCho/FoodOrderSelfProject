@@ -9,7 +9,8 @@ const CartContext = createContext({
 function cartReducer(state, action) {
   if (action.type === "ADD_ITEM") {
     // ... update the state to add a meal item
-    state.items.push(action.item);
+    state.items.push(action.item); // THIS IS WRONG because
+    // state should never be updated imperatively.
   }
 
   if (action.type === "REMOVE_ITEM") {

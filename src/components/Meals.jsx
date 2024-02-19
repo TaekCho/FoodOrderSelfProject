@@ -1,45 +1,27 @@
-import useHttp from "../hooks/useHttp";
-import Error from "./Error";
-import MealItem from "./MealItem";
+import MealItem from "./MealItem.jsx";
+import useHttp from "../hooks/useHttp.js";
+import Error from "./Error.jsx";
 
 const requestConfig = {};
 
 export default function Meals() {
-  // const [loadedMeals, setLoadedMeals] = useState([]);
-
-  // useEffect(() => {
-  //   async function fetchMeals() {
-  //     const response = await fetch("http://localhost:3000/meals");
-
-  //     // check if it returns valid response
-  //     if (!response.ok) {
-  //       // ...
-  //       console.log("ERROR");
-  //     }
-
-  //     const meals = await response.json();
-  //     setLoadedMeals(meals);
-  //   }
-
-  //   fetchMeals();
-  // }, []);
-
   const {
     data: loadedMeals,
     isLoading,
     error,
-    // Adding the empty array so the app does not crash due to `undefined`.
-    // Directly giving the second argument of the empty object will make an infinite loop
-    // So declare it out side the component fucntion.
   } = useHttp("http://localhost:3000/meals", requestConfig, []);
 
   if (isLoading) {
-    return <p className="center">meals loading...</p>;
+    return <p className="center">Fetching meals...</p>;
   }
 
   if (error) {
     return <Error title="Failed to fetch meals" message={error} />;
   }
+
+  // if (!data) {
+  //   return <p>No meals found.</p>
+  // }
 
   return (
     <ul id="meals">

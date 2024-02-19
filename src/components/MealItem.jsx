@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { currencyFormatter } from "../util/formatting";
-import Button from "./UI/Button";
-import CartContext from "../store/CartContext";
+
+import { currencyFormatter } from "../util/formatting.js";
+import Button from "./UI/Button.jsx";
+import CartContext from "../store/CartContext.jsx";
 
 export default function MealItem({ meal }) {
-  // To use context, you must pass your context object as an identifier
   const cartCtx = useContext(CartContext);
 
   function handleAddMealToCart() {

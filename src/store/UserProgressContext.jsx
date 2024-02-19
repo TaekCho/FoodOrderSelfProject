@@ -18,9 +18,11 @@ export function UserProgressContextProvider({ children }) {
   function hideCart() {
     setUserProgress("");
   }
+
   function showCheckout() {
     setUserProgress("checkout");
   }
+
   function hideCheckout() {
     setUserProgress("");
   }
@@ -39,9 +41,5 @@ export function UserProgressContextProvider({ children }) {
     </UserProgressContext.Provider>
   );
 }
-
-// export default function UserProgress() {
-//   return UserProgressContext;
-// }
 
 export default UserProgressContext;

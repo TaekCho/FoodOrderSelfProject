@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 async function sendHttpRequest(url, config) {
   const response = await fetch(url, config);
@@ -17,9 +17,11 @@ async function sendHttpRequest(url, config) {
 export default function useHttp(url, config, initialData) {
   const [data, setData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
-  // To prevent infinite loop, wrap below function with useCallback
+  function clearData() {
+    setData(initialData);
+  }
 
   const sendRequest = useCallback(
     async function sendRequest(data) {
@@ -30,7 +32,6 @@ export default function useHttp(url, config, initialData) {
       } catch (error) {
         setError(error.message || "Something went wrong!");
       }
-
       setIsLoading(false);
     },
     [url, config]
@@ -47,5 +48,6 @@ export default function useHttp(url, config, initialData) {
     isLoading,
     error,
     sendRequest,
+    clearData,
   };
 }
